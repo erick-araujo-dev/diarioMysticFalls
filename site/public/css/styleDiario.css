@@ -1,0 +1,359 @@
+@font-face {
+    font-family: 'BonaNova';
+    src: url(fontes/BonaNova-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Bona-Bold';
+    src: url(fontes/BonaNova-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url(fontes/Montserrat-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: 'Monda';
+    src: url(fontes/Monda-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Monda-Bold';
+    src: url(fontes/Monda-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url(fontes/Poppins-Light.ttf);
+}
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #EBE2D2;
+}
+
+.border {
+    border: 2px solid red;
+}
+
+/* usar para entender tamanho dos elementos */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 240px;
+    height: 100%;
+    background-color: #B19877;
+}
+
+.sidebarMarrom {
+    background-color: #584634;
+    height: 233px;
+    width: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebarMarrom p {
+    color: white;
+    font-family: 'Montserrat';
+    margin-top: 15px;
+    font-size: 20px
+}
+
+.imagemPerfil {
+    width: 170px;
+    margin-left: 20px;
+}
+
+.sidebar p {
+    text-align: center;
+    font-size: 18px;
+}
+
+.sidebar button {
+    height: 60px;
+    background: transparent;
+    border: 0;
+    font-family: 'Montserrat';
+    color: white;
+    cursor: pointer;
+    /* pointer serve para simbolizar que é um link */
+    text-align: left;
+}
+
+.sidebar button>span {  
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    /* espaçamento entre o icone e o texto */
+    height: 48px;
+    padding: 0 16px 0 23px;
+    /* o padding alinhou os itens no centro */
+    border-radius: 25px;
+    transition: 0.2s;
+    /* transição quando passa o mouse no botão */
+    margin-left: 15px;
+    /*afastar o botão da lateral esquerda */
+    margin-top: 15px;
+}
+
+/*essa classe serve para quando passar o mouse em cima, dar um fundo diferente  */
+/* aqui embaixo significa: dentro do botão, temos o span */
+.sidebar button:hover>span {
+    background-color: #d2bc9f;
+}
+
+
+.main {
+    margin-left: 240px;
+    /* o tamanho da sidebar é 240px, logo, 240px de margem a esquerda*/
+    overflow: hidden;
+}
+
+.barraBoasVindas {
+    background-color: #735944;
+    width: 100%;
+    height: 60px;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+.boxTexto>span {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    padding: 20px;
+}
+
+.BoxNovaEntrada,
+.boxDiariosAntigos {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 90px;
+    margin-top: 70px;
+
+
+}
+
+.linhaEntradasAntigas>span {
+    font-family: 'Montserrat';
+    display: flex;
+    align-items: center;    
+    padding: 10px 17px 26px 23px;   
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+    }
+
+.linhaEntradasAntigas:hover>span {
+    background-color: #d2bc9f;
+}
+
+.caixaNovaEntrada {
+    background-color: #CBAB8B;
+    width: 800px;
+    height: 650px;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+
+}
+
+.caixaDiariosAntigos {
+    background-color: #CBAB8B;
+    width: 790px;
+    height: 300px;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+.entradasAntigas{
+    height: 220px;
+    overflow-y: auto;
+}
+
+.boxTituloNovaEntrada {
+    width: 100%;
+    height: 80px;
+    background-color: #5C4430;
+}
+
+.boxTituloNovaEntrada>span {
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 25px;
+    font-style: normal;
+    line-height: normal;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.tituloDiario {
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+.tituloDiario>span {
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 20px;
+
+}
+
+#input_tituloDiario {
+    background-color: #E9D5B9;
+    border: none;
+    width: 700px;
+    height: 35px;
+    outline: none;
+    margin-top: 10px;
+    font-size: 16px;
+   
+    
+}
+
+.caixaConteudo {
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+.caixaConteudo>label {
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 20px;
+}
+
+.caixaConteudo textarea {
+    resize: none !important;
+    /* coloquei o importante para impedir que o usuário consiga redimensionar a caixa de texto */
+    outline: none;
+    /* remove a borda padrão quando clica */
+    font-family: "Bona Nova";
+    font-size: 14px;
+    
+}
+
+.caixaConteudo > labelfor { 
+    color: white;
+}
+#conteudoDiario {
+    background-color: #E9D5B9;
+    border: none;
+    width: 700px;
+    height: 350px;
+    margin-top: 10px;
+}
+
+
+.caixaBuscar {
+    font-family: 'Poppins';
+}
+
+.boxBuscar {
+    margin-left: 30px;
+}
+
+.caixaBuscar>span,
+.calendarioBox>span {
+    font-family: 'Montserrat';
+}
+
+.calendarioBox {
+    margin-top: 15px;
+}
+
+.deslogar > span {   
+    display: flex;
+    align-items: flex-end;
+    height: 48px;
+    padding: 0 16px 0 23px;
+    /* o padding alinhou os itens no centro */     
+}
+
+.caixaDeslogar {
+    cursor: pointer;
+    color: white;
+    font-family: 'Montserrat';
+    margin-left: 70px;     
+    margin-top: 188px;
+    padding: 0 16px 0 23px;
+
+}
+
+.boxBotao>button {
+    margin-top: 10px;
+    font-family: 'Montserrat';
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    background-color: #735944;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    color: white;
+    }
+
+.boxBotao {
+    display: flex;
+    justify-content: center;
+}
+
+#btn_editar, #btn_deletar{
+    margin-left:  20px;
+}
+
+
+.caixinhaBotao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.card_erro {
+	display: none;
+	background-color: rgba(0, 0, 0, 0.514);
+	color: white;
+	width: 230px;
+	position: fixed;
+	border-radius: 4px;
+	border: #000000 1px solid;
+	padding: 10px;
+	margin-right: 10%;
+	font-family: 'Montserrat';
+}
+
+.card_erro #mensagem_erro {
+	font-weight: 500;
+	font-size: 13px;
+}
+
+.loading-div {	
+	width: 50px;
+	display: none;
+}
+
+.loading-div img {
+	height: 50px;
+	width: 50px;
+}
+
+#div_erros_login {
+	display: none
+}
+
+.alerta_erro {
+	display: flex;
+	justify-content: flex-end;
+}

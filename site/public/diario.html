@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diários de Mystic Falls</title>
+
+    <link rel="stylesheet" href="css/styleDiario.css">
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="sidebarMarrom">
+            <div class="sidebar-header">
+                <img class="imagemPerfil" src="assets/paginaDiario/fotoPerfil.png">
+                <p id="nomeUsuario">Olá, </p>
+            </div>
+        </div>
+
+        <div class="navegacao">
+            <button>
+                <span>
+                    <img src="assets/paginaDiario/simboloMetrica.png">
+                    <span onclick="telaMetricas()"> Métricas </span>
+                </span>
+            </button>
+
+            <button>
+                <span>
+                    <img src="assets/paginaDiario/quiz.png">
+                    <span onclick="telaQuiz()"> Quiz </span>
+                </span>
+            </button>
+
+            <button>
+                <span>
+                    <img src="assets/paginaDiario/diario.png">
+                    <span onclick=""> Diário </span>
+                </span>
+            </button>
+
+            <div class="deslogar">
+                <div class="caixaDeslogar">
+                    <span onclick="telaSair()">SAIR</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <main class="main">
+
+        <div class="barraBoasVindas">
+            <div class="boxTexto">
+                <span> MEU DIÁRIO ONLINE </span>
+            </div>
+        </div>
+
+        <div class="BoxNovaEntrada">
+            <div class="caixaNovaEntrada">
+                <div class="boxTituloNovaEntrada">
+                    <span> NOVA ENTRADA</span>
+                </div>
+
+
+                <div>
+                    <div class="tituloDiario">
+                        <span>Insira um título:</span> <br>
+                        <input id="input_tituloDiario">
+                    </div>
+
+                    <div class="caixaConteudo">
+                        <label for="conteudoDiario">Escreva aqui seus pensamentos:</label>
+                        <textarea id="conteudoDiario" name="conteudoDiario" rows="12" cols="60"
+                            style="resize: both;"></textarea>
+                    </div>
+
+                    <div class="caixinhaBotao">
+                        <div class="boxBotao">
+                            <button id="btn_salvar">
+                                <span onclick="criar()">CRIAR NOVO</span>
+                            </button>
+                        </div>
+                        <div class="boxBotao">
+                            <button id="btn_editar"  style="display: none;">
+                                <span onclick="editar()">EDITAR</span>
+                            </button>
+                        </div>
+                        <div class="boxBotao">
+                            <button id="btn_deletar" style="display: none;">
+                                <span onclick="deletar()">DELETAR</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="boxDiariosAntigos">
+            <div class="caixaDiariosAntigos">
+                <div class="boxTituloNovaEntrada">
+                    <span> DIÁRIOS ANTIGOS</span>
+                </div>
+                <div class="entradasAntigas">
+        
+                </div>
+            </div>
+        </div>
+
+        <br><br><br>
+
+    </main>
+    </div>
+
+</body>
+
+<script>
+    var idDiarioSelecionado; 
+
+    var nome = sessionStorage.NOME_USUARIO;
+
+    nomeUsuario.innerHTML += nome;
+
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    function selecionarDiario(i, diarios) {
+        idDiarioSelecionado = diarios[i].idDiario;
+        input_tituloDiario.value = diarios[i].Titulo;
+        conteudoDiario.value = diarios[i].Conteudo;
+
+        document.getElementById('btn_editar').style.display = 'inline-block';
+        document.getElementById('btn_deletar').style.display = 'inline-block';
+        document.getElementById('btn_salvar').style.display = 'none';
+    }
+
+    function buscardiarios() {
+
+        fetch(`diarios/buscarDiarios/${idUsuario}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => exibirDiarios(data.diarios))
+        .catch(error => console.error('Erro:', error));
+    }
+
+    function exibirDiarios(diarios) {
+    var divEntradasAntigas = document.querySelector('.entradasAntigas');
+    divEntradasAntigas.innerHTML = '';
+
+    for (var i = 0; i < diarios.length; i++) {
+        var divLinha = document.createElement('div');
+        divLinha.className = 'linhaEntradasAntigas';
+
+        var spanDiario = document.createElement('span');
+        spanDiario.id = 'linha';
+        spanDiario.setAttribute('data-idDiario', diarios[i].idDiario);
+
+
+        (function (index) {
+            spanDiario.onclick = function () {
+                selecionarDiario(index, diarios);
+            };
+        })(i);
+
+        spanDiario.innerHTML = diarios[i].Titulo;
+
+        divLinha.appendChild(spanDiario);
+        divEntradasAntigas.appendChild(divLinha);
+    }
+}
+
+    function criar() {
+        var tituloVar = input_tituloDiario.value;
+        var conteudoVar = conteudoDiario.value;
+
+        fetch("diarios/criar", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                titulo: tituloVar,
+                conteudo: conteudoVar,
+                fkUsuario: idUsuario
+            }),
+        })
+
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    window.location = "diario.html";
+                    alert("Diário criado com sucesso!")
+
+                    cardErro.style.display = "block";
+                    mensagem_erro.innerHTML = "Diário criado com sucesso!";
+                } else {
+                    throw "Houve um erro ao tentar salvar o diário!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        return false;
+    }
+
+    function editar() {
+        var tituloVar = input_tituloDiario.value;
+        var conteudoVar = conteudoDiario.value;
+
+        fetch(`diarios/editar/${idDiarioSelecionado}`, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                titulo: tituloVar,
+                conteudo: conteudoVar,
+            }),
+        })
+
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    window.location = "diario.html";
+                    alert("Diário editado com sucesso!")
+
+                    cardErro.style.display = "block";
+                    mensagem_erro.innerHTML = "Diário editado com sucesso!";
+                } else {
+                    throw "Houve um erro ao tentar editar o diário!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+        return false;
+    }
+
+
+    function deletar() {
+        fetch(`diarios/deletar/${idDiarioSelecionado}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.location = "diario.html";
+                alert("Diário deletado com sucesso!")
+
+            } else if (resposta.status == 404) {
+                window.alert("Diário não encontrado para deleção");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function telaMetricas() {
+        window.location.href = "dashboard.html"
+    }
+
+    function telaQuiz() {
+        window.location.href = "quiz.html"
+    }
+
+    function telaSair() {
+        window.location.href = "index.html"
+    }
+
+    window.onload = function () {
+        buscardiarios();
+    };
+</script>
+
+</html>

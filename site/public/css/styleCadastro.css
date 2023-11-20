@@ -1,0 +1,139 @@
+* {
+	color: white;
+	font-family: "Montserrat";
+}
+
+.navbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	margin-top: 14.5px;
+	margin-right: 100px;
+}
+
+.navbar p {
+	padding: 5px;
+	margin-left: 90px;
+	cursor: pointer;
+}
+
+body {
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+h1 {
+	font-family: "Montserrat";
+	font-size: 30px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	text-align: center;
+	margin: 5px;
+}
+
+h2 {
+	font-family: "Montserrat", sans-serif;
+	font-size: 17px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+
+}
+
+.campoDeDados {
+	color: white;
+	font-family: "Montserrat";
+	font-size: 14px;
+	font-style: normal;
+	background-color: #B6A281;
+	border: none;	
+	width: 398px;
+	height: 49px;
+	border-radius: 20px;
+	margin: 10px;
+	padding-left: 20px;
+	outline: none;
+}
+
+.campoDeDados::placeholder {
+	color: white;
+	
+}
+
+.flexbox {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 30px;
+}
+
+.botaoCadastrar {
+	background-color: #552424;
+	border: none;
+	color: white;
+	padding: 15px 100px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	border-radius: 8px;
+	margin: 19px;	
+	cursor: pointer;
+}
+
+.botaoCadastrar:hover {
+	background-color: #673232;
+	transition-duration: 1s;
+	cursor: pointer;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login {
+	height: var(--tamanho-login);
+	background-size: cover;
+}
+
+.login .container {
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.card_erro {
+	display: none;
+	background-color: rgba(0, 0, 0, 0.514);
+	color: white;
+	width: 230px;
+	position: fixed;
+	border-radius: 4px;
+	border: #000000 1px solid;
+	padding: 10px;
+	margin-right: 10%;
+	font-family: 'Montserrat';
+}
+
+.card_erro #mensagem_erro {
+	font-weight: 500;
+	font-size: 13px;
+}
+
+.loading-div {	
+	width: 50px;
+	display: none;
+}
+
+.loading-div img {
+	height: 50px;
+	width: 50px;
+}
+
+#div_erros_login {
+	display: none
+}
+
+.alerta_erro {
+	display: flex;
+	justify-content: flex-end;
+}
